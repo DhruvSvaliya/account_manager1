@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'conatrol.dart';
 
@@ -16,9 +17,26 @@ void main() {
 
 class first extends StatelessWidget {
   controle c = Get.put(controle());
+  TextEditingController setpass=TextEditingController();
+
+  getpassword()
+  async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? action = prefs.getString('password');
+    if(action==null)
+      {
+        print("password is not set");
+      }
+    else
+      {
+        print("password is set");
+
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
+getpassword();
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -28,7 +46,7 @@ class first extends StatelessWidget {
                 fit: BoxFit.fill, image: AssetImage("image/a1.webp"))),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
-            height: MediaQuery.of(context).size.height / 1.2,
+            height: MediaQuery.of(context).size.height * 0.75,
             width: MediaQuery.of(context).size.width / 1.3,
             color: Colors.white,
             child: SingleChildScrollView(
@@ -47,7 +65,7 @@ class first extends StatelessWidget {
                 ),
                 Container(
                     margin: EdgeInsets.all(10),
-                    child: TextField(
+                    child: TextField(controller: setpass,
                         style: TextStyle(color: Color(0xFF651A7E)),
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
@@ -220,7 +238,9 @@ class first extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                           border: Border.all(color: Color(0xFF651A7E))),
                       child: TextButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setString('password', setpass.text);
                             Navigator.push(context, MaterialPageRoute(builder: (context) {
                               return password();
                             },));
