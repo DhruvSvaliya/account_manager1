@@ -1,3 +1,4 @@
+import 'package:account_manager/password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -5,9 +6,13 @@ import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'dashboard.dart';
+
 class controle extends GetxController
 {
   RxBool temp=false.obs;
+
+
 
   // setting
   RxString que="Security Question 1".obs,que1="Security Question 2".obs;
@@ -34,7 +39,7 @@ class controle extends GetxController
   }
 
   //password set
-  getpassword()
+  getpassword(BuildContext context)
   async {
     final prefs = await SharedPreferences.getInstance();
     final String? action = prefs.getString('password');
@@ -44,7 +49,9 @@ class controle extends GetxController
     }
     else
     {
-
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        return password();
+      },));
       print("password is set");
     }
   }

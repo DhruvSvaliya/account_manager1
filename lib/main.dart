@@ -22,7 +22,7 @@ class first extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-c.getpassword();
+c.getpassword(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
