@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 class controle extends GetxController
@@ -32,7 +33,31 @@ class controle extends GetxController
         });
   }
 
+  //password set
+  getpassword()
+  async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? action = prefs.getString('password');
+    if(action==null)
+    {
+      print("password is not set");
+    }
+    else
+    {
 
+      print("password is set");
+    }
+  }
+
+
+//lock screen
+  RxString pass2="1234".obs;
+  getpass()
+  async {
+    final prefs = await SharedPreferences.getInstance();
+    pass2.value =await prefs.getString('password')!;
+    print("setpass=$pass");
+  }
 
   //view data
   RxList name=[].obs;

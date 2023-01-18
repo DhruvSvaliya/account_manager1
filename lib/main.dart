@@ -19,24 +19,10 @@ class first extends StatelessWidget {
   controle c = Get.put(controle());
   TextEditingController setpass=TextEditingController();
 
-  getpassword()
-  async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? action = prefs.getString('password');
-    if(action==null)
-      {
-        print("password is not set");
-      }
-    else
-      {
-
-        print("password is set");
-      }
-  }
 
   @override
   Widget build(BuildContext context) {
-getpassword();
+c.getpassword();
     return Scaffold(
       body: Container(
         width: double.infinity,

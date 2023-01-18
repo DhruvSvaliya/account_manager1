@@ -3,19 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'conatrol.dart';
 
 class password extends StatelessWidget {
   controle c1 = Get.put(controle());
-  String pass="1234";
-  getpass()
-  async {
-    final prefs = await SharedPreferences.getInstance();
-    pass = prefs.getString('password')!;
-    print("setpass=$pass");
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +18,8 @@ class password extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill, image: AssetImage("image/a1.webp"))),
-        child: ScreenLock(correctString: pass,onValidate: (input) async {
-            if(input==pass)
+        child: ScreenLock(correctString: c1.pass2.value,onValidate: (input) async {
+            if(input==c1.pass2.value)
               {
                 return await Future.value(true);
               }
