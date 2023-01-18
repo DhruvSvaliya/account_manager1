@@ -64,7 +64,6 @@ getpassword();
                               fontWeight: FontWeight.bold))),
                 ),
                 Container(
-
                     margin: EdgeInsets.all(10),
                     child: TextField(controller: setpass,
                         style: TextStyle(color: Color(0xFF651A7E)),
