@@ -7,12 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'dashboard.dart';
-
+// /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
 class controle extends GetxController
 {
   RxBool temp=false.obs;
-
-
 
   // setting
   RxString que="Security Question 1".obs,que1="Security Question 2".obs;
